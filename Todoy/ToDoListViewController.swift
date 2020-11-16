@@ -14,7 +14,7 @@ class ToDoListViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    let ItemArray = ["Find Mike", "Buy eggos", "destory Demorgann"]
+    var ItemArray = ["Find Mike", "Buy eggos", "destory Demorgann"]
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -36,6 +36,24 @@ class ToDoListViewController: UITableViewController {
 
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    
+
+    @IBAction func addButtonpressed(_ sender: UIBarButtonItem) {
+        var  textField = UITextField()
+        let alert = UIAlertController(title: "Add item", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add", style: .default) { (UIAlertAction) in
+            self.ItemArray.append(textField.text!)
+            self.tableView.reloadData()
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder="Enter new Item"
+            textField=alertTextField
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
+}
+
+    
 
 
